@@ -1,5 +1,5 @@
 # Shopify-challenge
 
 ## Usage
-Login: "diana.liubarets@hotmail.com", 
+Login: "dina.liubarets@gmail.com", 
 password: "123456"
