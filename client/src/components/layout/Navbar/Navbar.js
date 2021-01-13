@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../../actions/authActions";
 import M from "materialize-css/dist/js/materialize.min.js";
 
+
 class Navbar extends Component {
   componentDidMount() {
     let sidenav = document.querySelector("#slide-out");
@@ -29,7 +30,7 @@ class Navbar extends Component {
               width="150"
               height="75"
               className="d-inline-block align-top m-4"
-              alt=""
+              alt="Home"
             />
           </NavLink>
           <a

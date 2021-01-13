@@ -45,18 +45,26 @@ class Dashboard extends Component {
                   <h6 className="mb0">Hi, {user.name.split(" ")[0]}</h6>
                   <h1 className="mt0" style={{ fontSize: "34px" }}>
                     <span className="poppins-title">
-                      You are logged into a{" "}
+                      You are logged into an{" "}
                     </span>
-                     <span className="poppins-title">app</span>
+                    <span className="poppins-title">app</span>
                   </h1>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="row mrl20"> </div>
         <div className="row mrl20">
-          
+          <div className="col s12">
+            <div className="card-panel dashboard-card">
+              <button onClick="" className="green-btn btn-large">
+                upload img
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="row mrl20">
+
         </div>
       </div>
     );
