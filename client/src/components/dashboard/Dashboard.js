@@ -58,10 +58,13 @@ class Dashboard extends Component {
           <div className="col s12">
             <div className="card-panel dashboard-card">
               <form>
-              <input type="file" id="file"/> 
-              <button className="green-btn btn-large"id="button" name="button" value="Upload" onClick="">Upload img</button>
+                <input type="file" id="file" />
+                {/* <a href="#" className="green-btn btn-large" id="button" name="button" value="Upload" >Upload img</a> */}
+
+                <button className="green-btn btn-large" name="button" value="Upload" onClick="thisFileUpload()">Upload</button>
+
               </form>
-              
+
             </div>
           </div>
         </div>

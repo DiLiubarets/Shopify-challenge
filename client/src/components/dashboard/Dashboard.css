@@ -7,13 +7,13 @@
   height: 560px;
 }
 
-form div {
+/* form div {
   position: relative;
   width: 102px;
   height: 38px;
   overflow: hidden;
   cursor: pointer;
-}
+} 
 
 input {
   position: absolute;
@@ -37,4 +37,4 @@ input {
   color: white;
   text-decoration: none;
   cursor: pointer;
-}
+}    */
