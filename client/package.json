@@ -1,0 +1,45 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.10.0",
+    "axios": "^0.18.0",
+    "chart.js": "^2.9.3",
+    "classnames": "^2.2.6",
+    "create-react-class": "^15.7.0",
+    "flickity": "^2.2.1",
+    "formik": "^2.2.0",
+    "jwt-decode": "^2.2.0",
+    "materialize-css": "^1.0.0-rc.2",
+    "react": "^16.6.3",
+    "react-chartjs-2": "^2.10.0",
+    "react-circular-progressbar": "^2.0.3",
+    "react-dom": "^16.6.3",
+    "react-open-weather": "^0.6.2",
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.1",
+    "redux": "^4.0.1",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "stripe": "^8.117.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:5000/",
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "mern-auth",
+  "version": "1.0.0",
+  "description": "Mern Auth Example",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "cd client && npm install && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.11.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
+    "create-react-class": "^15.7.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.4",
+    "flickity": "^2.2.1",
+    "if-env": "^1.0.4",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.3.11",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "react-circular-progressbar": "^2.0.3",
+    "react-open-weather": "^0.6.2",
+    "redux-persist": "^6.0.0",
+    "stripe": "^8.117.0",
+    "validator": "^10.9.0",
+    "ws": "^7.3.1"
+  },
+  "proxy": "http://localhost:5000/"
+}

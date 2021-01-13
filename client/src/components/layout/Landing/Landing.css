@@ -1,0 +1,8 @@
+.landing-header {
+  margin-top: 50px;
+}
+.two-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: #113031;
+  line-height: 2;
+}
+h1,
+h2,
+h3 {
+  font-family: "Lora", "Times New Roman", Times, serif;
+}
+h4,
+h5,
+h6 {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+h1 {
+  font-size: 52px;
+}
+h2 {
+  font-size: 43px;
+}
+h3 {
+  font-size: 34px;
+}
+.container {
+  width: 90%;
+}
+.green-btn {
+  border-radius: 999px !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  color: #113031 !important;
+  background-color: #00ff45 !important;
+  border: none !important;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0) !important;
+  transition: 0.5s background-color;
+}
+.green-btn:hover {
+  background-color: #ffff00 !important;
+}
+.row .col-centered {
+  float: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.icon-centered {
+  text-align: center;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.img-centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.m20 {
+  margin: 20px !important;
+}
+.m-5 {
+  margin: 5px !important;
+}
+.mb20 {
+  margin-bottom: 20px !important;
+}
+.mb0 {
+  margin-bottom: 0px !important;
+}
+.mr20 {
+  margin-right: 20px !important;
+}
+.ml10 {
+  margin-left: 10px !important;
+}
+.ml20 {
+  margin-left: 20px !important;
+}
+.ml30 {
+  margin-left: 30px !important;
+}
+.mrl20{
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+}
+.mt20 {
+  margin-top: 20px !important;
+}
+.mt10 {
+  margin-top: 10px !important;
+}
+.mt0 {
+  margin-top: 0px !important;
+}
+.no-margin {
+  margin: 0 !important;
+}
+.pl20 {
+  padding-left: 20px !important;
+}
+.pl0 {
+  padding-left: 0 !important;
+}
+.pr0 {
+  padding-right: 0 !important;
+}
+.pt0 {
+  padding-top: 0;
+}
+.no-padding {
+  padding: 0;
+}
+.card.transparent {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  box-shadow: none;
+}
+
+.card .card-action {
+  border-top: none !important;
+}
+input:focus {
+  border-bottom: 1px solid #00ff45 !important;
+  box-shadow: 0 1px 0 0 #00ff45 !important;
+  color: #00ff45 !important;
+}
+input:not([type]):focus:not([readonly]) + label,
+input[type="text"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="password"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="email"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="url"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="time"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="date"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="datetime"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="datetime-local"]:not(.browser-default):focus:not([readonly])
+  + label,
+input[type="tel"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="number"]:not(.browser-default):focus:not([readonly]) + label,
+input[type="search"]:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #00ff45 !important;
+}
+.breaker {
+  border-color: transparent;
+  padding: 30px 0 30px 0;
+}
