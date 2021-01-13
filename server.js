@@ -9,42 +9,12 @@ const ws = require("ws");
 
 // DB Config
 const dbCred = require("./config/dev");
-const stripe = require("stripe")(process.env.stripe || dbCred.stripe);
 
 const users = require("./routes/api/users");
-const sensor = require("./routes/api/sensor");
 const { db } = require("./models/User");
 
 const app = express();
 const port = process.env.PORT || 5000;
-
-// Stripe
-const YOUR_DOMAIN = "http://mern-co2-tracker.herokuapp.com/checkout" || "http://localhost:3000/checkout";
-
-app.post("/create-session", async (req, res) => {
-  console.log("/create-session")
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
-    line_items: [
-      {
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: "Stubborn Attachments",
-            images: ["https://i.imgur.com/EHyR2nP.png"],
-          },
-          unit_amount: 39900,
-        },
-        quantity: 1,
-      },
-    ],
-    mode: "payment",
-    success_url: `${YOUR_DOMAIN}?success=true`,
-    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
-  });
-
-  res.json({ id: session.id });
-});
 
 // Bodyparser middleware
 app.use(
@@ -57,7 +27,7 @@ app.use(bodyParser.json());
 // Connect to MongoDB
 mongoose
   .connect(
-    process.env.MONGODB_URI,
+    process.env.MONGODB_URI || "mongodb+srv://diLiu:Ukrayina91@cluster0.t7tmk.mongodb.net/Shopify?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -76,21 +46,12 @@ require("./config/passport")(passport);
 
 const wsServer = new ws.Server({ noServer: true });
 wsServer.on("connection", (socket, req) => {
-  let key = req.url.substring(6, req.url.length);
-  sensor.socketSetter(key, socket);
-  console.log(key, "opened");
-  socket.on("close", () => {
-    console.log(key, "closed");
-    sensor.socketCleaner(key);
-  });
-  socket.on("message", (params) => {
-    sensor.sendHistoricalData(key, JSON.parse(params));
-  });
+
 });
 
 // Routes
 app.use("/api/users", users);
-app.use("/api/sensor", sensor);
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/dev");
 const passport = require("passport");
-const sensor = require("./sensor");
+
 
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
@@ -27,14 +27,12 @@ router.post("/register", (req, res) => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
     } else {
-      const apiKey = GenerateAPIkey();
-      console.log(apiKey);
+   
 
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-        apiKey: apiKey,
       });
 
       // Hash password before saving in database
@@ -79,7 +77,6 @@ router.post("/login", (req, res) => {
         const payload = {
           id: user.id,
           name: user.name,
-          apiKey: user.apiKey,
           userEmail: user.email,
         };
 
@@ -142,29 +139,4 @@ router.post("/delete", (req, res) => {
   });
 });
 
-router.post("/newKey", (req, res) => {
-  // Form validation
-  const currentKey = req.body.apiKey;
-  const newKey = GenerateAPIkey();
-  User.updateOne({ apiKey: currentKey }, { apiKey: newKey }, function (
-    err,
-    docs
-  ) {
-    if (err) {
-      console.log(err);
-      res.json(err);
-    } else {
-      let socket = sensor.socketGetter(currentKey);
-      sensor.socketCleaner(currentKey);
-      sensor.socketSetter(newKey, socket);
-      res.json(newKey);
-    }
-  });
-});
-function GenerateAPIkey() {
-  return (
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15)
-  );
-}
 module.exports = router;

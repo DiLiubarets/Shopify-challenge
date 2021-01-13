@@ -25,11 +25,11 @@ class Navbar extends Component {
             className="brand-logo left"
           >
             <img
-              src="https://raw.githubusercontent.com/DiLiubarets/MERN_CO2/ee0324595ed9d947d9114bce20ccd05dccd47908/client/src/components/layout/Navbar/assets/logo.svg"
+              src=""
               width="150"
               height="75"
               className="d-inline-block align-top m-4"
-              alt="<MERN/> CO₂ Tracker logo"
+              alt=""
             />
           </NavLink>
           <a
@@ -44,7 +44,7 @@ class Navbar extends Component {
             {this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                  <NavLink to="/deviceInfo">Device Info</NavLink>
+                  <NavLink to="/deviceInfo">Info</NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard">Dashboard</NavLink>
@@ -61,7 +61,7 @@ class Navbar extends Component {
             {!this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                  <NavLink to="/deviceInfo">Device Info</NavLink>
+                  <NavLink to="/deviceInfo">Info</NavLink>
                 </li>
                 <li>
                   <NavLink to="/login">Log In</NavLink>
@@ -77,7 +77,7 @@ class Navbar extends Component {
             {this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                  <NavLink to="/deviceInfo">Device Info</NavLink>
+                  <NavLink to="/deviceInfo">Info</NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard">Dashboard</NavLink>
@@ -94,7 +94,7 @@ class Navbar extends Component {
             {!this.props.auth.isAuthenticated && (
               <div>
                 <li>
-                  <NavLink to="/deviceInfo">Device Info</NavLink>
+                  <NavLink to="/deviceInfo">Info</NavLink>
                 </li>
                 <li>
                   <NavLink to="/login">Log In</NavLink>

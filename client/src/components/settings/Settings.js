@@ -3,36 +3,19 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser, deleteUser } from "../../actions/authActions";
 import classnames from "classnames";
-import axios from "axios";
 
-let context;
+
 class Settings extends Component {
   constructor(props) {
     super(props);
-    context = this;
+
     this.state = {
       password: "",
       errors: {},
       user: this.props.auth.user
     };
   }
-  requestNewKey() {
-    axios
-      .post("/api/users/newKey", {
-        apiKey: context.props.auth.user.apiKey,
-      })
-      .then(function(response) {
-        context.props.auth.user.apiKey = response.data;
-        context.setState({
-          user: context.props.auth.user,
-        });
-        //user.apiKey = response.data
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  }
- 
+
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
@@ -74,27 +57,10 @@ class Settings extends Component {
           </div>
         </div>
         <div className="row m20">
-          <div className="col s10 m8 no-padding col-centered">
-            <h6>API Credentials</h6>
-            <p>Copy and Paste from Below</p>
-            <input
-              disabled
-              value={this.state.user.apiKey}
-              id="disabled"
-              type="text"
-              className="validate"
-            />
-            <button
-              className="btn-large green-btn mb20"
-              onClick={this.requestNewKey}
-            >
-              Request new API key
-            </button>
-          </div>
+
         </div>
         <div className="row m20">
           <div className="col s10 m8 no-padding col-centered">
-            <h6>Account Management</h6>
             <p>Delete your account</p>
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12 no-padding">
