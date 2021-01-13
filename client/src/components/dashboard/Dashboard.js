@@ -57,9 +57,11 @@ class Dashboard extends Component {
         <div className="row mrl20">
           <div className="col s12">
             <div className="card-panel dashboard-card">
-              <button onClick="" className="green-btn btn-large">
-                upload img
-              </button>
+              <form>
+              <input type="file" id="file"/> 
+              <button className="green-btn btn-large"id="button" name="button" value="Upload" onClick="">Upload img</button>
+              </form>
+              
             </div>
           </div>
         </div>
