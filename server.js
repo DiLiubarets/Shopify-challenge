@@ -9,7 +9,6 @@ const ws = require("ws");
 
 // DB Config
 const dbCred = require("./config/dev");
-
 const users = require("./routes/api/users");
 const { db } = require("./models/User");
 const imagedb = require("./routes/api/imagedb");
@@ -48,18 +47,24 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 
+
+//main server function controlled from here
 const wsServer = new ws.Server({ noServer: true });
 wsServer.on("connection", (socket, req) => {
   let key = req.url.substring(6, req.url.length)
   console.log(key, "opened");
-  imagedb.sendAllImages(socket, key);
+  imagedb.sendAllImages(socket, key); //send all previews to client 
   socket.on("message", (data) => {
     let imageObject = JSON.parse(data)
     if (imageObject.imageID) {
-      //imagedb.getImage(socket, key, imageObject)
-      editor.edit(socket, imageObject.imageID, imageObject.type)
-    } else {
-      imagedb.uploadImage(socket, imageObject, key)
+      editor.edit(socket, imageObject.imageID, imageObject.type) //send to editor
+    } else if (imageObject.previewID) {
+      imagedb.getImage(socket, imageObject, key) //send high quality version to client
+    } else if (imageObject.deleteID) {
+      imagedb.deleteImage(socket, imageObject, key)//delete image from db
+    }
+     else {
+      imagedb.uploadImage(socket, imageObject, key) //upload original, create preview, upload preview
     }
   });
 });

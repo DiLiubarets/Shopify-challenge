@@ -20,6 +20,8 @@ const UserSchema = new Schema({
     default: Date.now
   },
   images: [{ data: String, name: String, contentType: String }],
+  imageIDS: [{id: String}],
+  previewImages: [{data: String}]
 });
 
 module.exports = User = mongoose.model("users", UserSchema);
