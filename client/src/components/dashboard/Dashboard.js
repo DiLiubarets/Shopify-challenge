@@ -19,6 +19,7 @@ class Dashboard extends Component {
     super(props);
     this.fileInput = React.createRef();
     this.state = {
+      currentImage: null
     };
   }
 
@@ -34,16 +35,20 @@ class Dashboard extends Component {
     ws.onmessage = function (evt) {
       //let blob = new Blob ([evt.data])
       let imageObject = JSON.parse(evt.data)
-      imageObjects[imageObject.id] = imageObject
-      let imageBlock = <div className="col s12 m4 l3"><a href=""><img onClick={context.selectImage} id={imageObject.id} className="device-img responsive-img" alt="images that you loaded" src={imageObject.image} /></a></div>
-      var div = document.createElement('div')
-      ReactDOM.render(imageBlock, document.getElementById("imageGrid").appendChild(div))
 
-      if (!editorLoaded) {
-        context.loadEditor(imageObject.id)
-        editorLoaded = true
+      if(imageObject.edited) {
+        context.renderEditor(imageObject.image)
+      } else {
+        imageObjects[imageObject.id] = imageObject
+        let imageBlock = <div className="col s12 m4 l3"><a href=""><img onClick={context.selectImage} id={imageObject.id} className="device-img responsive-img" alt="images that you loaded" src={imageObject.image} /></a></div>
+        var div = document.createElement('div')
+        ReactDOM.render(imageBlock, document.getElementById("imageGrid").appendChild(div))
+  
+        if (!editorLoaded) {
+          context.loadEditor(imageObject.id)
+          editorLoaded = true
+        }
       }
-
     }
   }
 
@@ -77,12 +82,19 @@ class Dashboard extends Component {
 
   loadEditor(ID) {
     currentImageID = ID
-    let imageBlock = <div className="col s12 m4 l3"><img className="change-img responsive-img" alt="images that you loaded" src={imageObjects[ID].image}/></div>
+    this.renderEditor(imageObjects[ID].image)
+  }
+
+  renderEditor(imageData) {
+    this.setState({
+      currentImage: imageData
+    })
+    let imageBlock = <div className="col s12 m4 l3"><img className="change-img responsive-img" alt="images that you loaded" src={imageData}/></div>
     ReactDOM.render(imageBlock, document.getElementById("editor"))
   }
 
- testEdit() {
-   ws.send(JSON.stringify({imageID: currentImageID}))
+ testEdit(type) {
+   ws.send(JSON.stringify({imageID: this.state.currentImage, type: type}))
  }
 
   render() {
@@ -120,8 +132,12 @@ class Dashboard extends Component {
             <div className="card-panel edit-card ">
 
             <div className="row " id="editor"></div>
-            <button onClick={this.testEdit} className="green-btn btn-large" name="button"> edit</button>
+            <button onClick={() => this.testEdit('resize')} className="green-btn btn-large" name="button"> resize</button>
+            <button onClick={() => this.testEdit('grey')} className="green-btn btn-large" name="button"> grey</button>
+            <button onClick={() => this.testEdit('tint')} className="green-btn btn-large" name="button"> tint</button>
 
+
+            <a download="image.jpg" href={this.state.currentImage} ><button className="green-btn btn-large" name="button"> download</button></a>
 
            </div>
           </div>

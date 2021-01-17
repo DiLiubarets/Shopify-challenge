@@ -1,6 +1,7 @@
 
 let mongoose = require("mongoose");
 const User = require("../../models/User");
+const editor = require("./editor");
 
 
 const uploadImage = function (socket, imageObject, userID) {
@@ -39,8 +40,18 @@ const sendAllImages = function (socket, userID) {
   })
 }
 
+const getImage = function (socket, userID, imageObject) {
+  User.findOne({_id: userID}).select({ images: {$elemMatch: {_id: imageObject.imageID}}}).then((image) => {
+    let imageData = {
+      data: image.images[0].data,
+      id: image.images[0]['_id'],
+      name: image.images[0].name
+    }
+    editor.edit(socket, imageData, imageObject.type)
+  })
+}
 
-
+module.exports.getImage = getImage;
 module.exports.uploadImage = uploadImage;
 module.exports.sendAllImages = sendAllImages;
 

@@ -13,6 +13,8 @@ const dbCred = require("./config/dev");
 const users = require("./routes/api/users");
 const { db } = require("./models/User");
 const imagedb = require("./routes/api/imagedb");
+const editor = require("./routes/api/editor");
+
 
 
 const app = express();
@@ -54,7 +56,8 @@ wsServer.on("connection", (socket, req) => {
   socket.on("message", (data) => {
     let imageObject = JSON.parse(data)
     if (imageObject.imageID) {
-      console.log(imageObject.imageID)
+      //imagedb.getImage(socket, key, imageObject)
+      editor.edit(socket, imageObject.imageID, imageObject.type)
     } else {
       imagedb.uploadImage(socket, imageObject, key)
     }
