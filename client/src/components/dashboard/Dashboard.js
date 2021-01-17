@@ -32,10 +32,11 @@ class Dashboard extends Component {
 
     //create websocket
     ws = new WebSocket(
-      "ws://protected-everglades-56348.herokuapp.com/?key="  + user.id ,
+      "ws://protected-everglades-56348.herokuapp.com/?key="  + user.id );
 
     //receive images one at a time
     ws.onmessage = function (evt) {
+      
       let imageObject = JSON.parse(evt.data)
 
       //validate if edited, load high quality, or preview
@@ -64,7 +65,7 @@ class Dashboard extends Component {
           editorLoaded = true
         }
       }
-    })
+    }
   }
 
   //validate file, convert to base64 and send to server
