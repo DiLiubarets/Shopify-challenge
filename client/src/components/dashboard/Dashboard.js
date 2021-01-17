@@ -64,7 +64,7 @@ class Dashboard extends Component {
           editorLoaded = true
         }
       }
-    }
+    })
   }
 
   //validate file, convert to base64 and send to server
