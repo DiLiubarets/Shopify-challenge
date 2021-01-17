@@ -4,37 +4,29 @@
   -webkit-box-shadow: 0px 0px 20px 1px #ccc !important; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 0px 0px 20px 1px #ccc !important; /* Firefox 3.5 - 3.6 */
   box-shadow: 0px 0px 20px 1px #ccc !important; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
-  height: 560px;
+  
 }
 
-/* form div {
-  position: relative;
-  width: 102px;
-  height: 38px;
-  overflow: hidden;
-  cursor: pointer;
-} 
-
-input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 10;
+.edit-card{
+  border-radius: 30px !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: 0px 0px 20px 1px #ccc !important; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0px 0px 20px 1px #ccc !important; /* Firefox 3.5 - 3.6 */
+  box-shadow: 0px 0px 20px 1px #ccc !important; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+.device-img {
+  width: 200px !important;
+  /* height: 200px !important; */
+  border-radius: 30px 30px 0px 30px !important;
 }
 
-.btn {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px 8px;
-  background-color: lightblue;
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-}    */
+.change-img{
+  width: 1000px !important;
+  border-radius: 30px 30px 0px 30px !important;
+}
+/* @media (max-width: 600px) { 
+  .device-img {
+    width: 300px !important;
+  } }
+ */
+

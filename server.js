@@ -12,6 +12,8 @@ const dbCred = require("./config/dev");
 
 const users = require("./routes/api/users");
 const { db } = require("./models/User");
+const imagedb = require("./routes/api/imagedb");
+
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -46,7 +48,17 @@ require("./config/passport")(passport);
 
 const wsServer = new ws.Server({ noServer: true });
 wsServer.on("connection", (socket, req) => {
-
+  let key = req.url.substring(6, req.url.length)
+  console.log(key, "opened");
+  imagedb.sendAllImages(socket, key);
+  socket.on("message", (data) => {
+    let imageObject = JSON.parse(data)
+    if (imageObject.imageID) {
+      console.log(imageObject.imageID)
+    } else {
+      imagedb.uploadImage(socket, imageObject, key)
+    }
+  });
 });
 
 // Routes

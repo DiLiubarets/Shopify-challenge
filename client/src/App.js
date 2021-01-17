@@ -15,7 +15,7 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import Settings from "./components/settings/Settings";
 import Footer from "./components/layout/Footer/Footer";
-import DeviceInfo from "./components/DeviceInfo/DeviceInfo";
+
 
 import "./App.css";
 const Test = () => {
@@ -45,7 +45,6 @@ const Test = () => {
         <Route exact path="/" component={Landing} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/deviceInfo" component={DeviceInfo} />
         <Switch>
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/settings" component={Settings} />

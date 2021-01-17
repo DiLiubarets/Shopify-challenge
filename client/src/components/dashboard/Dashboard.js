@@ -4,18 +4,47 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import M from "materialize-css";
 import "./Dashboard.css";
+import ReactDOM from 'react-dom';
 
 
 
-
+let ws = null;
+let imageObjects = {}
+let currentImageID = null
+let editorLoaded = false
 
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
+    this.fileInput = React.createRef();
     this.state = {
-
     };
+  }
+
+  componentDidMount() {
+
+    const { user } = this.props.auth;
+    let context = this
+
+    ws = new WebSocket(
+      "ws://localhost:5000/?key=" + user.id
+    );
+
+    ws.onmessage = function (evt) {
+      //let blob = new Blob ([evt.data])
+      let imageObject = JSON.parse(evt.data)
+      imageObjects[imageObject.id] = imageObject
+      let imageBlock = <div className="col s12 m4 l3"><a href=""><img onClick={context.selectImage} id={imageObject.id} className="device-img responsive-img" alt="images that you loaded" src={imageObject.image} /></a></div>
+      var div = document.createElement('div')
+      ReactDOM.render(imageBlock, document.getElementById("imageGrid").appendChild(div))
+
+      if (!editorLoaded) {
+        context.loadEditor(imageObject.id)
+        editorLoaded = true
+      }
+
+    }
   }
 
   onLogoutClick = (e) => {
@@ -23,10 +52,41 @@ class Dashboard extends Component {
     this.props.logoutUser();
   };
 
+  uploadFile = (e) => {
+    e.preventDefault();
+    let name = this.fileInput.current.files[0].name
+    console.log(`Selected file - ${this.fileInput.current.files[0].name}`)
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.fileInput.current.files[0]);
+    reader.onloadend = function () {
+      let base64data = reader.result;
+      let imageObject = {
+        name: name,
+        image: base64data
+      }
+      ws.send(JSON.stringify(imageObject))
+    }
+  };
+
+  selectImage = (e) => {
+    e.preventDefault();
+    let imageID = e.target.id
+    this.loadEditor(imageID)
+  };
+
+  loadEditor(ID) {
+    currentImageID = ID
+    let imageBlock = <div className="col s12 m4 l3"><img className="change-img responsive-img" alt="images that you loaded" src={imageObjects[ID].image}/></div>
+    ReactDOM.render(imageBlock, document.getElementById("editor"))
+  }
+
+ testEdit() {
+   ws.send(JSON.stringify({imageID: currentImageID}))
+ }
+
   render() {
     const { user } = this.props.auth;
-
-
 
     return (
       <div>
@@ -54,22 +114,33 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
-        <div className="row mrl20">
-          <div className="col s12">
-            <div className="card-panel dashboard-card">
-              <form>
-                <input type="file" id="file" />
-                {/* <a href="#" className="green-btn btn-large" id="button" name="button" value="Upload" >Upload img</a> */}
+        <div className="row">
+          <div className="col s12 m12">
 
-                <button className="green-btn btn-large" name="button" value="Upload" onClick="thisFileUpload()">Upload</button>
+            <div className="card-panel edit-card ">
 
-              </form>
+            <div className="row " id="editor"></div>
+            <button onClick={this.testEdit} className="green-btn btn-large" name="button"> edit</button>
 
-            </div>
+
+           </div>
           </div>
         </div>
-        <div className="row mrl20">
+        <div className="row">
+        <div className="row" id="imageGrid"></div>
+        </div>
+        <div className="row">
+          <div className="col s12">
 
+            <div className="card-panel dashboard-card">
+
+              <form onSubmit={this.uploadFile}>
+                <input type="file" ref={this.fileInput} />
+                {/* <a href="#" className="green-btn btn-large" id="button" name="button" value="Upload" >Upload img</a> */}
+                <button className="green-btn btn-large" name="button" value="Upload" type="submit" >Upload</button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -83,8 +154,6 @@ Dashboard.propTypes = {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  currentLocation: state.location,
-  weatherData: state.weather,
 });
 
 export default connect(mapStateToProps, { logoutUser })(Dashboard);

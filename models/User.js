@@ -15,15 +15,11 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  apiKey: {
-    type: String,
-    required: true
-  },
   date: {
     type: Date,
     default: Date.now
   },
-  sensorData: [{ value: Number, timestamp: Number }],
+  images: [{ data: String, name: String, contentType: String }],
 });
 
 module.exports = User = mongoose.model("users", UserSchema);
