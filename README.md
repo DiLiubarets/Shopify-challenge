@@ -1,5 +1,5 @@
-# Shopify-challenge
+# An image repository
 
-## Usage
-Login: "dina.liubarets@gmail.com", 
-password: "123456"
+ Shopify challenge
+
+[live demo](https://protected-everglades-56348.herokuapp.com)
