@@ -98,6 +98,7 @@ class Dashboard extends Component {
   };
 
   deleteFile() {
+    console.log(currentImageID)
     if (currentImageID) {
       ws.send(JSON.stringify({ deleteID: currentImageID }))
     }
@@ -137,7 +138,7 @@ class Dashboard extends Component {
   edit(type) {
     if (this.state.currentImage) {
       this.showSpinner()
-      ws.send(JSON.stringify({ imageID: this.state.currentImage, type: type }))
+      ws.send(JSON.stringify({ image: this.state.currentImage, id: currentImageID ,type: type }))
     }
   }
 

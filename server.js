@@ -56,8 +56,8 @@ wsServer.on("connection", (socket, req) => {
   imagedb.sendAllImages(socket, key); //send all previews to client 
   socket.on("message", (data) => {
     let imageObject = JSON.parse(data)
-    if (imageObject.imageID) {
-      editor.edit(socket, imageObject.imageID, imageObject.type) //send to editor
+    if (imageObject.type) {
+      editor.edit(socket, imageObject) //send to editor
     } else if (imageObject.previewID) {
       imagedb.getImage(socket, imageObject, key) //send high quality version to client
     } else if (imageObject.deleteID) {

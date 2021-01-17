@@ -3,14 +3,14 @@ const imagedb = require("./imagedb");
 
 
 //validates and executes edit type. Edit functions send edited version back to client
-function edit(socket, imageData, type) {
-    if (type === "resize") {
+function edit(socket, imageData) {
+    if (imageData.type === "resize") {
         resize(socket, imageData)
     } 
-    else if (type === "grey") {
+    else if (imageData.type === "grey") {
         greyscale(socket, imageData)
     }
-    else if (type === "tint") {
+    else if (imageData.type === "tint") {
         tint(socket, imageData)
     }
 }
@@ -36,7 +36,7 @@ function createPreview(socket, imageObject, userID) {
 }
 
 function resize(socket, imageData) {
-    sharp(createBuffer(imageData))
+    sharp(createBuffer(imageData.image))
     .resize(52, 52)
     .toBuffer()
     .then(data => {
@@ -44,6 +44,7 @@ function resize(socket, imageData) {
         let header = 'data:image/jpeg;base64,'
         let imageObject = {
             image: header + base64data,
+            id: imageData.id,
             edited: true
         }
         socket.send(JSON.stringify(imageObject))
@@ -52,7 +53,7 @@ function resize(socket, imageData) {
 } 
 
 function greyscale(socket, imageData) {
-    sharp(createBuffer(imageData))
+    sharp(createBuffer(imageData.image))
     .greyscale(true)
     .toBuffer()
     .then(data => {
@@ -60,7 +61,6 @@ function greyscale(socket, imageData) {
         let header = 'data:image/jpeg;base64,'
         let imageObject = {
             image: header + base64data,
-            name: imageData.name,
             id: imageData.id,
             edited: true
         }
@@ -70,7 +70,7 @@ function greyscale(socket, imageData) {
 } 
 
 function tint(socket, imageData) {
-    sharp(createBuffer(imageData))
+    sharp(createBuffer(imageData.image))
     .tint({r: 112, g: 24, b: 24})
     .toBuffer()
     .then(data => {
@@ -78,7 +78,6 @@ function tint(socket, imageData) {
         let header = 'data:image/jpeg;base64,'
         let imageObject = {
             image: header + base64data,
-            name: imageData.name,
             id: imageData.id,
             edited: true
         }
