@@ -32,7 +32,7 @@ class Dashboard extends Component {
 
     //create websocket
     ws = new WebSocket(
-      "ws://protected-everglades-56348.herokuapp.com/?key="  + user.id );
+      "wss://protected-everglades-56348.herokuapp.com/?key="  + user.id );
 
     //receive images one at a time
     ws.onmessage = function (evt) {
