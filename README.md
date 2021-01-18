@@ -3,7 +3,7 @@
  Shopify challenge
 
  Its all about an image
- [Live DEMO](https://protected-everglades-56348.herokuapp.com)
+ >[Live DEMO](https://protected-everglades-56348.herokuapp.com)
 
 ## What it should look like
 ![About image](img/ezgif.com-gif-maker.gif)
@@ -19,15 +19,17 @@
 ### Setup
 
 > install npm packages
+
 Before it works, you'll need to specify the authentication required by MongoDB, as well as Passport. Create a file src/config/keys.js with the following contents:
 
+```shell
 const keys = {
     secretOrKey: "password",// key used for authentication
     dbName: "dbname",
     MONGODB_URI: "mongodb+srv://<username>:<password>@cluster0.t7tmk.mongodb.net/<dbName>?retryWrites=true&w=majority"
   },
 };
-
+```
 module.exports = keys;
 
 ```shell
