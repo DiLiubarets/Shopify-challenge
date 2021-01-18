@@ -24,11 +24,10 @@ Before it works, you'll need to specify the authentication required by MongoDB, 
 
 ```shell
 const keys = {
-    secretOrKey: "password",// key used for authentication
+    secretOrKey: "password", #key used for authentication
     dbName: "dbname",
     MONGODB_URI: "mongodb+srv://<username>:<password>@cluster0.t7tmk.mongodb.net/<dbName>?retryWrites=true&w=majority"
-  },
-};
+  };
 ```
 module.exports = keys;
 
@@ -55,6 +54,6 @@ $ npm run dev
 
 ## Questions
 
-Want to know more? Look us up on GitHub.
+Want to know more? Look up on GitHub.
 
-Dina's username is DiLiubarets and her profile is [here](https://www.github.com/DiLiubarets)
+My Email <a href="dina.liubarets@gmail.com">dina.liubarets@gmail.com</a>
