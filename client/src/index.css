@@ -32,7 +32,7 @@ h3 {
 .container {
   width: 90%;
 }
-.green-btn {
+.edit-btn{
   border-radius: 999px !important;
   font-size: 14px !important;
   font-weight: 600;
@@ -41,10 +41,45 @@ h3 {
   border: none !important;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0) !important;
   transition: 0.5s background-color;
+  margin: 3px;
 }
-.green-btn:hover {
+.edit-btn:hover {
   background-color: #eeddce !important;
 }
+.green-btn {
+  border-radius: 999px !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  color: #113031 !important;
+  background-color:  #8dc3a7 !important;
+  border: none !important;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0) !important;
+  transition: 0.5s background-color;
+  margin: 3px;
+}
+
+.green-btn:hover {
+  background-color: #4e9c81 !important;
+}
+
+.red-btn {
+  border-radius: 999px !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  color: #113031 !important;
+  background-color: #d21f3c !important;
+  border: none !important;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0) !important;
+  transition: 0.5s background-color;
+  margin: 3px;
+}
+
+.red-btn:hover {
+  background-color: #ff8a83 !important;
+}
+/* #source-code {
+  color: black;
+} */
 .row .col-centered {
   float: none !important;
   margin-left: auto !important;

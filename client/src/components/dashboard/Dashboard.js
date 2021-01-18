@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-import M from "materialize-css";
 import "./Dashboard.css";
 import ReactDOM from 'react-dom';
+import Logo from "../img/logo.jpeg"
 
 
 
@@ -32,11 +32,12 @@ class Dashboard extends Component {
 
     //create websocket
     ws = new WebSocket(
-      "wss://protected-everglades-56348.herokuapp.com/?key="  + user.id );
+      // "wss://protected-everglades-56348.herokuapp.com/?key="  + user.id );
+      "ws://localhost:5000/?key=" + user.id);
 
     //receive images one at a time
     ws.onmessage = function (evt) {
-      
+
       let imageObject = JSON.parse(evt.data)
 
       //validate if edited, load high quality, or preview
@@ -48,7 +49,7 @@ class Dashboard extends Component {
       }
       else {
         imageObjects[imageObject.id] = imageObject
-        let imageBlock = <div className="col s12 m4 l3"><a href=""><img onClick={context.selectImage} id={imageObject.id} className="device-img responsive-img" alt="images that you loaded" src={imageObject.image} /></a></div>
+        let imageBlock = <div className="col s12 m4 l3 "><a href=""><img onClick={context.selectImage} id={imageObject.id} className="device-img responsive-img" alt="images that you loaded" src={imageObject.image} /></a></div>
         var div = document.createElement('div')
         ReactDOM.render(imageBlock, document.getElementById("imageGrid").appendChild(div))
 
@@ -130,7 +131,7 @@ class Dashboard extends Component {
     this.setState({
       currentImage: imageData
     })
-    let imageBlock = <div className="col s12 m4 l3"><img className="change-img responsive-img" alt="images that you loaded" src={imageData} /></div>
+    let imageBlock = <div class="container"><div className="col s12 m12 center-align"><img className="change-img responsive-img" alt="images that you loaded" src={imageData} /></div></div>
     ReactDOM.render(imageBlock, document.getElementById("editor"))
   }
 
@@ -138,7 +139,7 @@ class Dashboard extends Component {
   edit(type) {
     if (this.state.currentImage) {
       this.showSpinner()
-      ws.send(JSON.stringify({ image: this.state.currentImage, id: currentImageID ,type: type }))
+      ws.send(JSON.stringify({ image: this.state.currentImage, id: currentImageID, type: type }))
     }
   }
 
@@ -195,19 +196,19 @@ class Dashboard extends Component {
               <div className="card-image mt20">
                 <img
                   style={{ height: "100px" }}
-                  src=""
-                  alt=""
+                  src={Logo}
+                  alt="Logo"
                 />
               </div>
               <div className="card-stacked">
                 <div className="card-content">
-                  <h6 className="mb0">Hi, {user.name.split(" ")[0]}</h6>
-                  <h1 className="mt0" style={{ fontSize: "34px" }}>
-                    <span className="poppins-title">
-                      You are logged into an{" "}
+                  <h6 className="mb0" style={{ fontSize: "30px" }}>Welcome, {user.name.split(" ")[0]}</h6>
+                  <h6 className="mb0" >
+                    <span>
+                      to your img{" "}
                     </span>
-                    <span className="poppins-title">app</span>
-                  </h1>
+                    <span className="mb0">app</span>
+                  </h6>
                 </div>
               </div>
             </div>
@@ -220,14 +221,16 @@ class Dashboard extends Component {
 
               <div className="row " id="editor">
               </div>
-              <button onClick={() => this.edit('resize')} className="green-btn btn-large" name="button"> resize</button>
-              <button onClick={() => this.edit('grey')} className="green-btn btn-large" name="button"> grey</button>
-              <button onClick={() => this.edit('tint')} className="green-btn btn-large" name="button"> tint</button>
-
+              <button onClick={() => this.edit('resize')} className="edit-btn btn-large" name="button">square</button>
+              <button onClick={() => this.edit('landscape')} className="edit-btn btn-large" name="button">landscape</button>
+              <button onClick={() => this.edit('rotate')} className="edit-btn btn-large" name="button">rotate</button>
+              <button onClick={() => this.edit('grey')} className="edit-btn btn-large" name="button"> black/white</button>
+              <button onClick={() => this.edit('warm')} className="edit-btn btn-large" name="button">warm</button>
+              <button onClick={() => this.edit('cold')} className="edit-btn btn-large" name="button">cold</button>
+              <button onClick={() => this.edit('green')} className="edit-btn btn-large" name="button">green</button>
+              <br /> <br />
               <a download="image.jpg" href={this.state.currentImage} ><button className="green-btn btn-large" name="button"> download</button></a>
-              <button onClick={this.deleteFile} className="green-btn btn-large" name="button"> delete original</button>
-
-
+              <button onClick={this.deleteFile} className="red-btn btn-large" name="button"> delete</button>
 
             </div>
           </div>
@@ -242,7 +245,6 @@ class Dashboard extends Component {
 
               <form onSubmit={this.uploadFile}>
                 <input id="uploadInput" type="file" accept="image/*" ref={this.fileInput} />
-                {/* <a href="#" className="green-btn btn-large" id="button" name="button" value="Upload" >Upload img</a> */}
                 <button className="green-btn btn-large" name="button" value="Upload" type="submit" >Upload</button>
 
 

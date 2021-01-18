@@ -23,7 +23,7 @@ const uploadImage = function (socket, imageObject, userID) {
         editor.createPreview(socket, newImageObject, userID)
       }
     }
-  );
+  ).catch((err) => console.log(err));
 }
 
 //Called from editor. Uploads the generated preview and sends it to client
@@ -43,7 +43,7 @@ const uploadPreview = function (socket, imageObject, userID) {
         socket.send(JSON.stringify(newImageObject))
       }
     }
-  );
+  ).catch((err) => console.log(err));
 }
 
 //loads document of all image id's, finds and sends each preview images back to client asyncronously
@@ -59,7 +59,7 @@ const sendAllImages = function (socket, userID) {
         socket.send(JSON.stringify(imageObject))
       })
     }
-  })
+  }).catch((err) => console.log(err));
 }
 
 //sends high quality image back to client to load editor
@@ -72,7 +72,7 @@ const getImage = function (socket, imageObject, userID) {
       hq: true
     }
     socket.send(JSON.stringify(imageData))
-  })
+  }).catch((err) => console.log(err));
 }
 
 const deleteImage = function (socket, imageObject, userID) {

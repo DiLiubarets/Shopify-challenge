@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../../actions/authActions";
 import M from "materialize-css/dist/js/materialize.min.js";
-
+import Logo from "../../img/logo.jpeg"
 
 class Navbar extends Component {
   componentDidMount() {
@@ -26,10 +26,10 @@ class Navbar extends Component {
             className="brand-logo left"
           >
             <img
-              src=""
+              src={Logo}
               width="150"
               height="75"
-              className="d-inline-block align-top m-4"
+              className="d-inline-block align-top m-4 logo"
               alt="Home"
             />
           </NavLink>

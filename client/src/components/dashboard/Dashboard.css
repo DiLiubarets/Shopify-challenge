@@ -21,8 +21,7 @@
 }
 
 .change-img{
-  width: 1000px !important;
-  border-radius: 30px 30px 0px 30px !important;
+  width: 60% !important;
 }
 /* @media (max-width: 600px) { 
   .device-img {

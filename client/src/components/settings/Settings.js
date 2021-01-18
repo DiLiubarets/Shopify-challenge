@@ -92,11 +92,14 @@ class Settings extends Component {
                 <span className="red-text">{errors.password}</span>
               </div>
               <div className="col s12 mb20 no-padding">
-                <button type="submit" className="btn-large green-btn mb20">
+                <button type="submit" className="btn-large red-btn mb20">
                   Delete Account
                 </button>
               </div>
             </form>
+            <p>GitHub source code
+            <a id="source-code"href="https://github.com/DiLiubarets/Shopify-challenge"> HERE</a>
+            </p>
           </div>
         </div>
       </div>

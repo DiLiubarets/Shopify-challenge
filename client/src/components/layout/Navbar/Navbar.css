@@ -23,3 +23,6 @@ nav ul a:active {
 .sidenav li>a {
     color: #fff !important;
 }
+.logo{
+    border-radius: 30px !important;
+}
