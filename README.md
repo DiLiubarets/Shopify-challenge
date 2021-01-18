@@ -6,7 +6,7 @@
  [Live DEMO](https://protected-everglades-56348.herokuapp.com)
 
 ## What it should look like
-![About image](assets/demo.gif)
+![About image](img/imgrepogif.mp4)
 
 ## Setup
 
