@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import "./Dashboard.css";
 import ReactDOM from 'react-dom';
-import Logo from "../img/logo.jpeg"
+import Logo from "../../images/logo.jpeg"
 
 
 
@@ -131,7 +131,7 @@ class Dashboard extends Component {
     this.setState({
       currentImage: imageData
     })
-    let imageBlock = <div class="container"><div className="col s12 m12 center-align"><img className="change-img responsive-img" alt="images that you loaded" src={imageData} /></div></div>
+    let imageBlock = <div className="container"><div className="col s12 m12 center-align"><img className="change-img responsive-img" alt="images that you loaded" src={imageData} /></div></div>
     ReactDOM.render(imageBlock, document.getElementById("editor"))
   }
 

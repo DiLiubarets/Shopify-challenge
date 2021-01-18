@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../../actions/authActions";
 import M from "materialize-css/dist/js/materialize.min.js";
-import Logo from "../../img/logo.jpeg"
+import Logo from "../../../images/logo.jpeg"
 
 class Navbar extends Component {
   componentDidMount() {

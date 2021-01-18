@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
-import Logo from "../../img/logo.jpeg"
+import Logo from "../../../images/logo.jpeg"
 
 
 class Landing extends Component {
