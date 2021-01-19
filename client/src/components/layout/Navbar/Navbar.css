@@ -27,3 +27,6 @@ nav ul a:active {
 .logo{
     border-radius: 30px !important;
 }
+.sidenav {
+    background-color:#b19d99 !important; 
+}
