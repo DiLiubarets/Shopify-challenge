@@ -32,7 +32,7 @@ class Dashboard extends Component {
 
     //create websocket
     ws = new WebSocket(
-      "wss://protected-everglades-56348.herokuapp.com/?key="  + user.id );
+      "wss://its-all-about-your-image.herokuapp.com/?key="  + user.id );
       // "ws://localhost:5000/?key=" + user.id);
 
     //receive images one at a time
@@ -193,7 +193,7 @@ class Dashboard extends Component {
         <div className="row m20 mb0">
           <div className="col s12 ml10">
             <div className="card horizontal transparent mb0">
-              <div className="card-image mt20">
+              <div className="card-image mt20 hero-img">
                 <img
                   style={{ height: "100px" }}
                   src={Logo}
@@ -216,27 +216,26 @@ class Dashboard extends Component {
 
             <div className="card-panel edit-card ">
 
-              <div className="row " id="editor">
-              </div>
-              <button onClick={() => this.edit('resize')} className="edit-btn btn-large" name="button">square</button>
-              <button onClick={() => this.edit('landscape')} className="edit-btn btn-large" name="button">landscape</button>
-              <button onClick={() => this.edit('rotate')} className="edit-btn btn-large" name="button">rotate</button>
-              <button onClick={() => this.edit('grey')} className="edit-btn btn-large" name="button"> black/white</button>
-              <button onClick={() => this.edit('warm')} className="edit-btn btn-large" name="button">warm</button>
-              <button onClick={() => this.edit('cold')} className="edit-btn btn-large" name="button">cold</button>
-              <button onClick={() => this.edit('green')} className="edit-btn btn-large" name="button">green</button>
-              <button onClick={() => this.edit('brightness')} className="edit-btn btn-large" name="button">brightness</button>
-              <button onClick={() => this.edit('saturation')} className="edit-btn btn-large" name="button">saturation</button>
-              <button onClick={() => this.edit('sepia')} className="edit-btn btn-large" name="button">sepia</button>
+              <div className="row " id="editor"></div>
+              <button onClick={() => this.edit('resize')} className="edit-btn btn-small" name="button">square</button>
+              <button onClick={() => this.edit('landscape')} className="edit-btn btn-small" name="button">landscape</button>
+              <button onClick={() => this.edit('rotate')} className="edit-btn btn-small" name="button">rotate</button>
+              <button onClick={() => this.edit('grey')} className="edit-btn btn-small" name="button"> black/white</button>
+              <button onClick={() => this.edit('warm')} className="edit-btn btn-small" name="button">warm</button>
+              <button onClick={() => this.edit('cold')} className="edit-btn btn-small" name="button">cold</button>
+              <button onClick={() => this.edit('green')} className="edit-btn btn-small" name="button">green</button>
+              <button onClick={() => this.edit('brightness')} className="edit-btn btn-small" name="button">brightness</button>
+              <button onClick={() => this.edit('saturation')} className="edit-btn btn-small" name="button">saturation</button>
+              <button onClick={() => this.edit('sepia')} className="edit-btn btn-small" name="button">sepia</button>
               <br /> <br />
-              <a download="image.jpg" href={this.state.currentImage} ><button className="green-btn btn-large" name="button"> download</button></a>
-              <button onClick={this.deleteFile} className="red-btn btn-large" name="button"> delete</button>
+              <a download="image.jpg" href={this.state.currentImage} ><button className="green-btn btn-small" name="button"> download</button></a>
+              <button onClick={this.deleteFile} className="red-btn btn-small" name="button"> delete</button>
 
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="row" id="imageGrid"></div>
+        <div className="row m20 mb0">
+          <div id="imageGrid"></div>
         </div>
         <div className="row">
           <div className="col s12">
