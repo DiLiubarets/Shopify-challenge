@@ -3,7 +3,7 @@
  Shopify challenge
 
  Its all about an image
- >[Live DEMO](https://protected-everglades-56348.herokuapp.com)
+ >[Live DEMO](https://its-all-about-your-image.herokuapp.com)
 
 ## What it should look like
 ![About image](img/ezgif.com-gif-maker.gif)
