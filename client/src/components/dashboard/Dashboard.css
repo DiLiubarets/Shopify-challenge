@@ -23,9 +23,10 @@
 .change-img{
   width: 100% !important;
 }
-/* @media (max-width: 600px) { 
-  .device-img {
-    width: 300px !important;
-  } }
- */
+ @media (max-width: 600px) { 
+ .hero-img {
+  display: none;
+}
+}
+ 
 
