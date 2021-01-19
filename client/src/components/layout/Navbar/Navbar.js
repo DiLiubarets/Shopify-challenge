@@ -71,6 +71,18 @@ class Navbar extends Component {
           <ul id="slide-out" className="sidenav">
             {this.props.auth.isAuthenticated && (
               <div>
+                <br />
+                <div className="row">
+                  <div className="col col-centered">
+                    <img
+                      src={Logo}
+                      width="150"
+                      height="75"
+                      className="d-inline-block align-top m-4 logo"
+                      alt="Home"
+                    />
+                  </div>
+                </div>
                 <li>
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
@@ -85,6 +97,18 @@ class Navbar extends Component {
 
             {!this.props.auth.isAuthenticated && (
               <div>
+                 <br />
+                <div className="row">
+                  <div className="col col-centered">
+                    <img
+                      src={Logo}
+                      width="150"
+                      height="75"
+                      className="d-inline-block align-top m-4 logo"
+                      alt="Home"
+                    />
+                  </div>
+                </div>
                 <li>
                   <NavLink to="/login">Log In</NavLink>
                 </li>
