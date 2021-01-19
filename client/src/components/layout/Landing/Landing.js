@@ -11,7 +11,7 @@ class Landing extends Component {
         <div className="row">
           <div className="col s12 m10 l8 col-centered">
             <h1 className="center-align landing-header">
-              It's all about images <i class="material-icons fingerprint"></i>
+            It's all about the images <i class="material-icons fingerprint"></i>
             </h1>
             <img
                   style={{ height: "100px" }}

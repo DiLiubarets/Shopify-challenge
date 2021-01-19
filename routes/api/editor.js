@@ -24,6 +24,15 @@ function edit(socket, imageData) {
     else if (imageData.type === "green") {
         green(socket, imageData)
     }
+    else if (imageData.type === "brightness") {
+        bright(socket, imageData)
+    }
+    else if (imageData.type === "saturation") {
+        saturation(socket, imageData)
+    }
+    else if (imageData.type === "sepia") {
+        sepia(socket, imageData)
+    }
 }
 
 //creates buffer from base64 image data. Buffer needed for spark.js
@@ -97,7 +106,6 @@ function rotate(socket, imageData) {
         .catch(err => console.log(`downisze issue ${err}`));
 }
 
-
 function greyscale(socket, imageData) {
     sharp(createBuffer(imageData.image))
         .greyscale(true)
@@ -117,7 +125,7 @@ function greyscale(socket, imageData) {
 
 function warm(socket, imageData) {
     sharp(createBuffer(imageData.image))
-        .tint({r: 172, g: 112, b: 61})
+        .tint({ r: 172, g: 112, b: 61 })
         .toBuffer()
         .then(data => {
             let base64data = Buffer.from(data).toString('base64')
@@ -134,7 +142,7 @@ function warm(socket, imageData) {
 
 function cold(socket, imageData) {
     sharp(createBuffer(imageData.image))
-        .tint({r: 135, g: 206, b: 250})
+        .tint({ r: 135, g: 206, b: 250 })
         .toBuffer()
         .then(data => {
             let base64data = Buffer.from(data).toString('base64')
@@ -151,7 +159,7 @@ function cold(socket, imageData) {
 
 function green(socket, imageData) {
     sharp(createBuffer(imageData.image))
-        .tint({r: 127, g: 255, b: 0})
+        .tint({ r: 127, g: 255, b: 0 })
         .toBuffer()
         .then(data => {
             let base64data = Buffer.from(data).toString('base64')
@@ -166,6 +174,67 @@ function green(socket, imageData) {
         .catch(err => console.log(`downisze issue ${err}`));
 }
 
+function bright(socket, imageData) {
+    sharp(createBuffer(imageData.image))
+        .modulate({
+            brightness: 0.9,
+            // saturation: 0.5,
+            // hue: 90
+        })
+        .toBuffer()
+        .then(data => {
+            let base64data = Buffer.from(data).toString('base64')
+            let header = 'data:image/jpeg;base64,'
+            let imageObject = {
+                image: header + base64data,
+                id: imageData.id,
+                edited: true
+            }
+            socket.send(JSON.stringify(imageObject))
+        })
+        .catch(err => console.log(`downisze issue ${err}`));
+}
+
+function saturation(socket, imageData) {
+    sharp(createBuffer(imageData.image))
+        .modulate({
+            saturation: 0.5,
+            // hue: 90
+        })
+        .toBuffer()
+        .then(data => {
+            let base64data = Buffer.from(data).toString('base64')
+            let header = 'data:image/jpeg;base64,'
+            let imageObject = {
+                image: header + base64data,
+                id: imageData.id,
+                edited: true
+            }
+            socket.send(JSON.stringify(imageObject))
+        })
+        .catch(err => console.log(`downisze issue ${err}`));
+}
+
+function sepia(socket, imageData) {
+    sharp(createBuffer(imageData.image))
+        .recomb([
+            [0.3588, 0.7044, 0.1368],
+            [0.2990, 0.5870, 0.1140],
+            [0.2392, 0.4696, 0.0912],
+        ])
+        .toBuffer()
+        .then(data => {
+            let base64data = Buffer.from(data).toString('base64')
+            let header = 'data:image/jpeg;base64,'
+            let imageObject = {
+                image: header + base64data,
+                id: imageData.id,
+                edited: true
+            }
+            socket.send(JSON.stringify(imageObject))
+        })
+        .catch(err => console.log(`downisze issue ${err}`));
+}
 
 
 module.exports.edit = edit

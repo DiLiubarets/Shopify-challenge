@@ -9,7 +9,8 @@
 nav ul a {
     padding: 0 20px 0 20px !important;
     opacity: 0.75;
-    background-color:#b19d99 !important;
+    /* background-color:#b19d99 !important; */
+    border-radius: 30px !important;
 }
 nav ul a:hover {
     opacity: 1;

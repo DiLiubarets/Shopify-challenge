@@ -32,8 +32,8 @@ class Dashboard extends Component {
 
     //create websocket
     ws = new WebSocket(
-      "wss://protected-everglades-56348.herokuapp.com/?key="  + user.id );
-      // "ws://localhost:5000/?key=" + user.id);
+      // "wss://protected-everglades-56348.herokuapp.com/?key="  + user.id );
+      "ws://localhost:5000/?key=" + user.id);
 
     //receive images one at a time
     ws.onmessage = function (evt) {
@@ -202,13 +202,10 @@ class Dashboard extends Component {
               </div>
               <div className="card-stacked">
                 <div className="card-content">
-                  <h6 className="mb0" style={{ fontSize: "30px" }}>Welcome, {user.name.split(" ")[0]}</h6>
-                  <h6 className="mb0" >
-                    <span>
-                      to your img{" "}
-                    </span>
-                    <span className="mb0">app</span>
-                  </h6>
+                  <h4 className="mb0" style={{ fontSize: "34px" }}>Welcome, {user.name.split(" ")[0]}</h4>
+                  <h4 className="mb0" style={{ fontSize: "20px" }} >
+                    It's all about your image
+                  </h4>
                 </div>
               </div>
             </div>
@@ -228,6 +225,9 @@ class Dashboard extends Component {
               <button onClick={() => this.edit('warm')} className="edit-btn btn-large" name="button">warm</button>
               <button onClick={() => this.edit('cold')} className="edit-btn btn-large" name="button">cold</button>
               <button onClick={() => this.edit('green')} className="edit-btn btn-large" name="button">green</button>
+              <button onClick={() => this.edit('brightness')} className="edit-btn btn-large" name="button">brightness</button>
+              <button onClick={() => this.edit('saturation')} className="edit-btn btn-large" name="button">saturation</button>
+              <button onClick={() => this.edit('sepia')} className="edit-btn btn-large" name="button">sepia</button>
               <br /> <br />
               <a download="image.jpg" href={this.state.currentImage} ><button className="green-btn btn-large" name="button"> download</button></a>
               <button onClick={this.deleteFile} className="red-btn btn-large" name="button"> delete</button>

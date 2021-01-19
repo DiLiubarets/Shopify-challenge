@@ -7,7 +7,7 @@ class Footer extends Component {
     return (
       <div>
         <footer className="footer mt-auto py-3">
-          <h6 className="mb20">
+          <h6 className="mb20"style={{ fontSize: "10px" }}>
             <span className="footer-highlight">This app was created by</span>
           </h6>
           <div className="row">
