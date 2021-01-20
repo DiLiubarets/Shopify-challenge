@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "create-react-class": "^15.7.0",
+    "darkmode-js": "^1.5.7",
     "flickity": "^2.2.1",
     "formik": "^2.2.0",
     "jwt-decode": "^2.2.0",

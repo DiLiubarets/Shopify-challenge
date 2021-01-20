@@ -18,6 +18,21 @@ import Footer from "./components/layout/Footer/Footer";
 
 
 import "./App.css";
+import Darkmode from 'darkmode-js';
+
+const options = {
+  bottom: '64px', 
+  time: '0.5s', 
+  mixColor: '#fff', 
+  backgroundColor: '#fff', 
+  buttonColorDark: '#100f2c',  
+  buttonColorLight: '#fff', 
+  saveInCookies: false, 
+  label: '🌓', 
+  autoMatchOsTheme: true 
+}
+const darkmode = new Darkmode(options);
+darkmode.showWidget();
 const Test = () => {
   // Check for token to keep user logged in
   if (localStorage.jwtToken) {
@@ -37,6 +52,7 @@ const Test = () => {
       window.location.href = "./login";
     }
   }
+  
 
   return (
     <Router>
